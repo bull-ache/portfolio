@@ -1,0 +1,5 @@
+name = Caesar Cipher
+description = A nifty way to encode a word.
+package = New Modules
+core = 7.x
+files[] = caesarcipher.module
