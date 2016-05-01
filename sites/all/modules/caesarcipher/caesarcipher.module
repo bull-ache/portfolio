@@ -1,0 +1,80 @@
+<?php
+
+function caesarcipher_menu() {
+    $items['caesarcipher'] = array(
+        'title' => 'Encode a message below',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('caesarcipher_form'),
+        'access callback' => TRUE,
+        'type' => MENU_NORMAL_ITEM,
+    );
+    $items['caesarcipher_success_page'] = array(
+        'title' => 'Success',
+        'page callback' => 'caesarcipher_success',
+        'access callback' => TRUE,
+        'type' => MENU_CALLBACK,
+    );
+    return $items;
+}
+
+function caesarcipher_form() {
+    $form['shift_value'] = array(
+        '#title' => 'Shift Value',
+        '#type' => 'textfield',
+        '#description' => t('Enter an integer to shift it by that many spaces'),
+        '#element_validate' => array('element_validate_value'),
+        '#required' => TRUE,
+    );
+    $form['shift_direction'] = array(
+        '#title' => 'Shift Direction',
+        '#type' => 'textfield',
+        '#description' => t('Please enter queens Y-coordinate'),
+        '#element_validate' => array('element_validate_direction'),
+        '#required' => TRUE,
+    );
+    $form['phrase'] = array(
+        '#title' => 'Phrase',
+        '#type' => 'textfield',
+        '#description' => t('Please enter a word or phrase'),
+        '#element_validate' => array('element_validate_phrase'),
+        '#required' => TRUE,
+    );
+    $form['submit'] = array(
+        '#type' => 'submit',
+        '#value' => 'Scramble your phrase!',
+    );
+    return $form;
+}
+
+function element_validate_value($element) {
+    // if ($element['#value'] > 8 || $element['#value'] < 1) {
+    //     form_error($element, t('Your piece is off the board! Coordinates must be between 1-8'));
+    }
+}
+
+function caesarcipher_form_submit($form, &$form_state) {
+
+    // $attack = array();
+    // $queen_x = $form_state['values']['queen_x'];
+    // $queen_y = $form_state['values']['queen_y'];
+    // $king_x = $form_state['values']['king_x'];
+    // $king_y = $form_state['values']['king_y'];
+    //
+    // // if (($queen_x === $king_x) && ($queen_y === $king_y))  {
+    // //     array_push($attack, "Your queen is on your king! He is already dead.");
+    // // }
+    // // elseif (($queen_x === $king_x) || ($queen_y === $king_y) || ((abs($queen_x - $king_x)) === (abs($queen_y - $king_y)))) {
+    // //     array_push($attack, "The king is in check!");
+    // // }
+    // // else {
+    // //     array_push($attack, "The king is not in check");
+    // // };
+    // // $_SESSION['attack_output'] = $attack;
+    // //
+    // // $form_state['redirect'] = 'caesarcipher_success_page';
+}
+
+function caesarcipher_success() {
+    // $answer = $_SESSION['attack_output'];
+    // return $answer[0];
+}
