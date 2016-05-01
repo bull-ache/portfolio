@@ -47,15 +47,19 @@ function caesarcipher_form() {
 }
 
 function element_validate_value($element) {
-    // if ($element['#value'] > 8 || $element['#value'] < 1) {
-    //     form_error($element, t('Your piece is off the board! Coordinates must be between 1-8'));
-    }
+    $value = abs($form_state['values']['king_x']),
+    };
+    return $value
 }
 
 function caesarcipher_form_submit($form, &$form_state) {
 
     // $attack = array();
-    // $queen_x = $form_state['values']['queen_x'];
+    // $queen_x = function element_validate_value($element) {
+        // if ($element['#value'] > 8 || $element['#value'] < 1) {
+        //     form_error($element, t('Your piece is off the board! Coordinates must be between 1-8'));
+        }
+    }
     // $queen_y = $form_state['values']['queen_y'];
     // $king_x = $form_state['values']['king_x'];
     // $king_y = $form_state['values']['king_y'];
