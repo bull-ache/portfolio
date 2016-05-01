@@ -82,3 +82,16 @@ function caesarcipher_success() {
     // $answer = $_SESSION['attack_output'];
     // return $answer[0];
 }
+
+//Sudo code answer(shift right):
+// - create an assoc array where key is letter and value is number
+// - use modulo to reduce to remainder
+// for each letter, return value that coorespondes with key, store in a variable,
+// add shift value
+    // if  that total value is <= 26, return key
+    //else subtract 27 from that value, and return that key.
+//(shift left)
+//if total value is less than 0, add that value (a negative number) to 26, or subtract it's absolute value from 26.Then add 1.  Then return that key.
+
+//characters
+    //if x does not equal a-z, return x.
