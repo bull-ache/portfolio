@@ -54,29 +54,32 @@ function element_validate_value($element) {
 
 function caesarcipher_form_submit($form, &$form_state) {
 
-    // $attack = array();
-    // $queen_x = function element_validate_value($element) {
-        // if ($element['#value'] > 8 || $element['#value'] < 1) {
-        //     form_error($element, t('Your piece is off the board! Coordinates must be between 1-8'));
+    $alphabet = array(
+        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z');
+    $numbers = $array_flip($alphabet);
+    $emptyarray = array();
+    $shift_value = $form_state['values']['shift_value'];
+    $direction = $form_state['values']['shift_direction'];
+    $phrase = $form_state['values']['phrase'];
+    $phrase_array = str_split($phrase);
+    $phrase_flip = array_flip($phrase_aray);
+    $phrase_length = count($phrase);
+    $answer = '';
+
+    if ($direction === 'right');
+        for ($i=0; $i<$phrase_length; $i++) {
+            $answer .= $alphabet[($numbers[$phrase_array[$i]]+$shift_value) % 26];
+        }
+        else ($direction === 'right');
+            for ($i=0; $i<$phrase_length; $i++) {
+            $answer .= $alphabet[($numbers[$phrase_array[$i]]-$shift_value) % 26];
         }
     }
-    // $queen_y = $form_state['values']['queen_y'];
-    // $king_x = $form_state['values']['king_x'];
-    // $king_y = $form_state['values']['king_y'];
-    //
-    // // if (($queen_x === $king_x) && ($queen_y === $king_y))  {
-    // //     array_push($attack, "Your queen is on your king! He is already dead.");
-    // // }
-    // // elseif (($queen_x === $king_x) || ($queen_y === $king_y) || ((abs($queen_x - $king_x)) === (abs($queen_y - $king_y)))) {
-    // //     array_push($attack, "The king is in check!");
-    // // }
-    // // else {
-    // //     array_push($attack, "The king is not in check");
-    // // };
-    // // $_SESSION['attack_output'] = $attack;
-    // //
-    // // $form_state['redirect'] = 'caesarcipher_success_page';
-}
+
+    $_SESSION['answer'] = $answer;
+    $form_state['redirect'] = 'answer_page';
+    }
+
 
 function caesarcipher_success() {
     // $answer = $_SESSION['attack_output'];
@@ -87,9 +90,9 @@ function caesarcipher_success() {
 // - create an assoc array where key is letter and value is number
 // - use modulo to reduce to remainder
 // for each letter, return value that coorespondes with key, store in a variable,
-// add shift value
-    // if  that total value is <= 26, return key
-    //else subtract 27 from that value, and return that key.
+// add shift value to each
+    // if  that total value is <= 25, return key
+    //else subtract 26 from that value, and return that key.
 //(shift left)
 //if total value is less than 0, add that value (a negative number) to 26, or subtract it's absolute value from 26.Then add 1.  Then return that key.
 
