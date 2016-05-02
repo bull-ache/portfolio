@@ -82,13 +82,14 @@ function caesarcipher_form_submit($form, &$form_state) {
     $phrase_length = count($phrase);
     $answer = '';
 
-    if ($direction === 'right');
+    if ($direction === 'right') {
         for ($i=0; $i<$phrase_length; $i++) {
             $answer .= $alphabet[($numbers[$phrase_array[$i]]+$shift_value) % 26];
         }
-        else {
-            for ($i=0; $i<$phrase_length; $i++) {
-            $answer .= $alphabet[($numbers[$phrase_array[$i]]-$shift_value) % 26];
+    }
+    else {
+        for ($i=0; $i<$phrase_length; $i++) {
+        $answer .= $alphabet[($numbers[$phrase_array[$i]]-$shift_value) % 26];
         }
     }
 
