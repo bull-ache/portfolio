@@ -86,7 +86,7 @@ function caesarcipher_form_submit($form, &$form_state) {
         for ($i=0; $i<$phrase_length; $i++) {
             $answer .= $alphabet[($numbers[$phrase_array[$i]]+$shift_value) % 26];
         }
-        else ($direction === 'right');
+        else {
             for ($i=0; $i<$phrase_length; $i++) {
             $answer .= $alphabet[($numbers[$phrase_array[$i]]-$shift_value) % 26];
         }
@@ -94,12 +94,12 @@ function caesarcipher_form_submit($form, &$form_state) {
 
     $_SESSION['answer'] = $answer;
     $form_state['redirect'] = 'answer_page';
-    }
+}
 
 
 function caesarcipher_success() {
-    // $answer = $_SESSION['attack_output'];
-    // return $answer[0];
+       $answer = $_SESSION['answer'];
+       return '<h1>Here is your incoded input:' . $answer . '</h1>';
 }
 
 //Sudo code answer(shift right):
