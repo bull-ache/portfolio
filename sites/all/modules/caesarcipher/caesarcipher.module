@@ -96,7 +96,7 @@ function caesarcipher_form_submit($form, &$form_state) {
     }
 
     $_SESSION['answer'] = $answer;
-    $form_state['redirect'] = 'answer_page';
+    $form_state['redirect'] = 'caesarcipher_success_page';
 }
 
 
