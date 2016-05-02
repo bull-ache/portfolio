@@ -47,10 +47,13 @@ function caesarcipher_form() {
 }
 
 function element_validate_value($element) {
-    $value = abs($form_state['values']['king_x']),
-    };
-    return $value
+    $value = $form_state['values']['shift_value'];
+    if (!preg_match('/^[1-9][0-9]*$/', $shift_phrase)) {
+        form_set_error('shift_phrase', t('Your input must ONLY contain letters, numbers, and the following characters: ,!?.'));
+    }
 }
+
+
 
 function caesarcipher_form_submit($form, &$form_state) {
 
