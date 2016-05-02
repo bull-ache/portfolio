@@ -46,10 +46,10 @@ function caesarcipher_form() {
     return $form;
 }
 
-function element_validate_value($element) {
+function element_validate_value($form, &$form_state) {
     $value = $form_state['values']['shift_value'];
-    if (!preg_match('/^[1-9][0-9]*$/', $shift_phrase)) {
-        form_set_error('shift_phrase', t('Your input must ONLY contain letters, numbers, and the following characters: ,!?.'));
+    if (!preg_match('/^[0-9]*$/', $value)) {
+        form_set_error('shift_value', t('Your input must ONLY contain letters, numbers, and the following characters: ,!?.'));
     }
 }
 
@@ -70,15 +70,17 @@ function element_validate_phrase($form, &$form_state) {
 
 function caesarcipher_form_submit($form, &$form_state) {
 
-    $alphabet = array(
-        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z');
-    $numbers = $array_flip($alphabet);
-    $emptyarray = array();
+    $alphabet = array('a', 'b', 'c', 'd', 'e', 'f', 'g',
+    'h', 'i', 'j', 'k', 'l', 'm', 'n',
+    'o', 'p', 'q', 'r', 's', 't',
+    'u', 'v', 'w', 'x', 'y', 'z');
+
+    $numbers = array_flip($alphabet);
     $shift_value = $form_state['values']['shift_value'];
     $direction = $form_state['values']['shift_direction'];
     $phrase = $form_state['values']['phrase'];
     $phrase_array = str_split($phrase);
-    $phrase_flip = array_flip($phrase_aray);
+    $phrase_flip = array_flip($phrase_array);
     $phrase_length = count($phrase);
     $answer = '';
 
