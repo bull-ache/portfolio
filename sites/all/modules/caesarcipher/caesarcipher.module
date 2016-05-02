@@ -59,7 +59,12 @@ function element_validate_direction($element) {
     }
 }
 
-
+function element_validate_phrase($form, &$form_state) {
+    $shift_phrase = strtolower($form_state['values']['shift_phrase']);
+    if (!preg_match('/^[a-zA-Z0-9,.!? ]*$/', $shift_phrase)) {
+        form_set_error('shift_phrase', t('Your input must ONLY contain letters, numbers, and the following characters: ,!?.'));
+    }
+}
 
 
 
