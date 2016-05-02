@@ -53,6 +53,14 @@ function element_validate_value($element) {
     }
 }
 
+function element_validate_direction($element) {
+    if ((strtolower($element['#value']) != 'left') && (strtolower($element['#value']) != 'right')) {
+        form_error($element, t('Please enter ONLY the values left or right.'));
+    }
+}
+
+
+
 
 
 function caesarcipher_form_submit($form, &$form_state) {
