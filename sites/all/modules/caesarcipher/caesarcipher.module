@@ -49,7 +49,7 @@ function caesarcipher_form() {
 function element_validate_value($form, &$form_state) {
     $value = $form_state['values']['shift_value'];
     if (!preg_match('/^[0-9]*$/', $value)) {
-        form_set_error('shift_value', t('Your input must ONLY contain letters, numbers smaller than 2600000000000000000, and the following characters: ,!?.'));
+        form_set_error('shift_value', t('Your input must ONLY contain only numbers smaller than 2600000000000000000'));
     }
 }
 
@@ -61,7 +61,7 @@ function element_validate_direction($element) {
 
 function element_validate_phrase($form, &$form_state) {
     $phrase = strtolower($form_state['values']['phrase']);
-    if (!preg_match('/^[a-zA-Z0-9,"  *".!? ]*$/', $phrase)) {
+    if (!preg_match('/^[a-zA-Z0-9,"  *".!?@#$%& ]*$/', $phrase)) {
         form_set_error('shift_phrase', t('Your input must ONLY contain letters, numbers, and the following characters: ,!?.'));
     }
 }
