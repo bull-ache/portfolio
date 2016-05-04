@@ -28,7 +28,7 @@ function caesarcipher_form() {
     $form['shift_direction'] = array(
         '#title' => 'Shift Direction',
         '#type' => 'textfield',
-        '#description' => t('Please enter queens Y-coordinate'),
+        '#description' => t('Please enter either left or right'),
         '#element_validate' => array('element_validate_direction'),
         '#required' => TRUE,
     );
@@ -83,23 +83,43 @@ function caesarcipher_form_submit($form, &$form_state) {
     $phrase_array = str_split($phrase);
     $phrase_flip = array_flip($phrase_array);
     $phrase_length = count($phrase_array);
-    $answer = '';
+    $array = array();
 
     if ($direction === 'right') {
-        for ($i=0; $i<$phrase_length; $i++)
-            {
-                $answer .= $alphabet[(($numbers[$phrase_array[$i]]+$shift_value) + $maximum) % 26];
+        for ($i=0; $i<$phrase_length; $i++) {
+
+            if ($phrase_array[$i] === 'a' || $phrase_array[$i] === 'b' || $phrase_array[$i] === 'c'
+            || $phrase_array[$i] === 'd' || $phrase_array[$i] === 'e' || $phrase_array[$i] === 'f' || $phrase_array[$i] === 'g' || $phrase_array[$i] === 'h' || $phrase_array[$i] === 'i'
+            || $phrase_array[$i] === 'j' || $phrase_array[$i] === 'k' || $phrase_array[$i] === 'l' || $phrase_array[$i] === 'm' || $phrase_array[$i] === 'n' || $phrase_array[$i] === 'o'
+            || $phrase_array[$i] === 'p' || $phrase_array[$i] === 'q' || $phrase_array[$i] === 'r' || $phrase_array[$i] === 's' || $phrase_array[$i] === 't' || $phrase_array[$i] === 'u'
+            || $phrase_array[$i] === 'v' || $phrase_array[$i] === 'w' || $phrase_array[$i] === 'x' || $phrase_array[$i] === 'y' || $phrase_array[$i] === 'z') {
+
+            $result = $alphabet[(($numbers[$phrase_array[$i]]+$shift_value) + $maximum) % 26];
+            }  else {
+                $result = $phrase_array[$i];
+
             }
-
-
-    }
-    else {
-        for ($i=0; $i<$phrase_length; $i++)
-            {
-                $answer .= $alphabet[(($numbers[$phrase_array[$i]]-$shift_value) + $maximum) % 26];
-            }
-
+            array_push($array, $result);
         }
+    }
+    else  {
+        for ($i=0; $i<$phrase_length; $i++) {
+
+            if ($phrase_array[$i] === 'a' || $phrase_array[$i] === 'b' || $phrase_array[$i] === 'c'
+            || $phrase_array[$i] === 'd' || $phrase_array[$i] === 'e' || $phrase_array[$i] === 'f' || $phrase_array[$i] === 'g' || $phrase_array[$i] === 'h' || $phrase_array[$i] === 'i'
+            || $phrase_array[$i] === 'j' || $phrase_array[$i] === 'k' || $phrase_array[$i] === 'l' || $phrase_array[$i] === 'm' || $phrase_array[$i] === 'n' || $phrase_array[$i] === 'o'
+            || $phrase_array[$i] === 'p' || $phrase_array[$i] === 'q' || $phrase_array[$i] === 'r' || $phrase_array[$i] === 's' || $phrase_array[$i] === 't' || $phrase_array[$i] === 'u'
+            || $phrase_array[$i] === 'v' || $phrase_array[$i] === 'w' || $phrase_array[$i] === 'x' || $phrase_array[$i] === 'y' || $phrase_array[$i] === 'z') {
+
+            $result = $alphabet[(($numbers[$phrase_array[$i]]-$shift_value) + $maximum) % 26];
+        }  else {
+            $result = $phrase_array[$i];
+
+            }
+            array_push($array, $result);
+        }
+    }
+    $answer = implode("", $array);
 
     $_SESSION['answer'] = $answer;
     $form_state['redirect'] = 'caesarcipher_success_page';
@@ -110,16 +130,3 @@ function caesarcipher_success() {
        $answer = $_SESSION['answer'];
        return '<h1>Here is your incoded input:' . $answer . '</h1>';
 }
-
-//Sudo code answer(shift right):
-// - create an assoc array where key is letter and value is number
-// - use modulo to reduce to remainder
-// for each letter, return value that coorespondes with key, store in a variable,
-// add shift value to each
-    // if  that total value is <= 25, return key
-    //else subtract 26 from that value, and return that key.
-//(shift left)
-//if total value is less than 0, add that value (a negative number) to 26, or subtract it's absolute value from 26.Then add 1.  Then return that key.
-
-//characters
-    //if x does not equal a-z, return x.
