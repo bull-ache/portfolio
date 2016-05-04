@@ -128,5 +128,5 @@ function caesarcipher_form_submit($form, &$form_state) {
 
 function caesarcipher_success() {
        $answer = $_SESSION['answer'];
-       return '<h1>Here is your incoded input:' . $answer . '</h1>';
+       return '<h1>Here is your encoded input:' . $answer . '</h1>';
 }
